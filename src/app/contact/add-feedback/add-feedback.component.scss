@@ -1,0 +1,36 @@
+.jumbotron {
+    border-radius: 0px;
+}
+
+.jumbotron-sm {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.h1 small {
+    font-size: 24px;
+}
+
+.input-group-text {
+    width: 37px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.message {
+    height: 145px;
+    resize: none;
+}
+
+input[type=text], textarea {
+    box-shadow: none !important;
+}
+input[type=text] {
+    box-shadow: none !important;
+}
+
+.error-icons {
+    padding: 8px 0px 0px 5px;
+}

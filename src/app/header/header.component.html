@@ -1,0 +1,52 @@
+<header id="top">
+  <div class="header-wrapper">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <!-- <a class="navbar-brand" href="#">Legato</a> -->
+        <a class="navbar-brand" href="#">
+          <span class="nav-title">
+            <!-- <img alt="" class="d-inline-block align-middle" height="35" src="favicon.ico" width="35"> -->
+            Legato
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-lg-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="home" routerLinkActive="active"><i class="fa fa-home mr-1"></i>Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="courses" routerLinkActive="active"><i class="fa fa-graduation-cap mr-1"></i>Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="about" routerLinkActive="active"><i class="fa fa-info-circle mr-1"></i>About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="contact" routerLinkActive="active"><i class="fa fa-comment mr-1"></i>Contact</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="profileDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><i class="fa fa-user"></i></a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropDown">
+                <div *ngIf="!authenticationService.loggedIn">
+                  <a class="dropdown-item" (click)="login()"><i class="fa fa-sign-in"></i>Signin</a>
+                </div>
+                <div *ngIf="authenticationService.loggedIn">
+                  <a class="dropdown-item">Hi, {{username}}</a>
+                  <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Signout</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>

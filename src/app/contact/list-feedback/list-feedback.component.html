@@ -1,0 +1,31 @@
+<div class="row text-center mt-3">
+  <div class="col-sm-12 col-lg-12">
+    <h1 class="h1">
+      Feedback list <small>We vaule your comments</small></h1>
+  </div>
+</div>
+
+<div class="row feedback-container" *ngFor="let comment of comments; let i = index" [attr.data-index]="i">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-lg-12">
+        <p class="text-danger margin-0">{{i+1}}. {{comment.username}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-lg-12">
+        <p class="col-sm-12 col-xs-12">{{comment.message}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-sm-12 col-xs-12 ml-3 text-info">
+        <span><i class="fa fa-phone"></i> : {{comment.mobile}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-sm-12 col-xs-12 ml-3 text-info">
+        <span><i class="fa fa-envelope"></i> : <a href="mailto:{{comment.email}}">{{comment.email}}</a></span>
+      </div>
+    </div>
+  </div>
+</div>

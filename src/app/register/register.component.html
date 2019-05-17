@@ -1,0 +1,72 @@
+<section>
+  <div class="container">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="row registration shadow-lg p-5 mt-5 rounded">
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <input type="text" formControlName="username" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+              placeholder="Username" />
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <input type="password" formControlName="password" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              placeholder="Password" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <input type="email" formControlName="email" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              placeholder="Email" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email is invalid</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <input type="number" formControlName="mobile" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
+              placeholder="Mobile Number" />
+            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+              <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
+              <div *ngIf="f.mobile.errors.pattern">Invalid mobile number</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <input type="text" formControlName="firstName" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+              placeholder="First Name" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <input type="text" formControlName="lastName" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+              placeholder="Last Name" />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 mx-auto">
+          <div class="btn-group m-0" role="group">
+            <button [disabled]="loading" class="btn btn-secondary" role="button">Register</button>
+            <button [disabled]="loading" class="btn btn-default" role="button" (click)="onLoginClick()">Login</button>
+            <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+          </div>
+          <div *ngIf="error" class="text-danger pt-2">{{error}}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

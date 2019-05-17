@@ -1,0 +1,67 @@
+$main-color: #6394F8;
+$light-text: #ABB0BE;
+header {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+}
+
+header .header-wrapper {
+    background: rgba(255, 255, 255, 0.5);
+}
+.navbar{
+    padding: 20px 0;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 2em;
+    color: #262626;
+}
+
+.nav-icon {
+    width: 40px;
+}
+
+.nav-item {
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link.active,
+.navbar-light .navbar-nav .nav-item:hover .nav-link {
+    background: #353b48;
+    color: #ffffff;
+}
+
+.navbar-light .navbar-nav .dropdown:hover .nav-link {
+    background-color: transparent;
+    color: #262626;
+}
+
+.dropdown-item {
+    cursor: pointer;
+    font-size: 0.8rem !important;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link {
+    color: #262626;
+    padding: 5px 15px;
+}
+
+.nav-title {
+    font-weight: bold;
+}
+// .search-panel {
+//     background-color: #F2F3F5;
+//     border: 1px solid #CACBCC;
+// }
+
+// .search-panel:focus {
+//     background-color: #FFF;
+//     border-color: #DEDFE0;
+//     border-right-color: transparent;
+//     box-shadow: none;
+// }

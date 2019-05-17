@@ -1,0 +1,78 @@
+<div class="row text-center mb-5">
+  <div class="col-sm-12 col-lg-12">
+    <h1 class="h1">
+      Contact us <small>Feel free to contact us</small></h1>
+  </div>
+</div>
+<!-- <span tooltip="Tooltip" placement="top" show-delay="500" tooltip-class='text-danger' theme='light'>Tooltip on top</span> -->
+<div class="row">
+  <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+    <div class="well well-sm">
+      <form [formGroup]="feedbackFormGroup" (ngSubmit)="onSubmit()" #feedbackForm="ngForm">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group showtip">
+              <div class="input-group">
+                <input type="text" formControlName="username" [(ngModel)]="feedback.username" id="username" placeholder="Full name" class="form-control"
+                  [class.is-invalid]="submitted && feedbackFormGroup.controls['username'].invalid" autocomplete="off">
+              </div>
+              <div *ngIf="submitted && feedbackFormGroup.controls['username'].invalid" class="text-danger">
+                <span *ngIf="feedbackFormGroup.controls['username'].errors.required" class="tooltiptext">Full name is required.</span>
+                <span *ngIf="feedbackFormGroup.controls['username'].errors?.minlength" class="tooltiptext">Name should contain at least 4 characters.</span>
+                <span *ngIf="feedbackFormGroup.controls['username'].errors?.maxlength" class="tooltiptext">Name should contain at most 50 characters.</span>
+              </div>
+            </div>
+            <div class="form-group showtip">
+              <div class="input-group">
+                <input type="text" formControlName="email" [(ngModel)]="feedback.email" id="email" placeholder="Email address" class="form-control"
+                  [class.is-invalid]="submitted && feedbackFormGroup.controls['email'].invalid">
+              </div>
+              <div *ngIf="submitted && feedbackFormGroup.controls['email'].invalid" class="text-danger">
+                <span *ngIf="feedbackFormGroup.controls['email'].errors.required" class="tooltiptext">Email address is required.</span>
+                <span *ngIf="feedbackFormGroup.controls['email'].errors.email" class="tooltiptext">Invalid email.</span>
+              </div>
+            </div>
+            <div class="form-group showtip">
+              <div class="input-group">
+                <input type="text" formControlName="mobile" [(ngModel)]="feedback.mobile" id="mobile" placeholder="Mobile" class="form-control"
+                  [class.is-invalid]="submitted && feedbackFormGroup.controls['mobile'].invalid">
+              </div>
+              <div *ngIf="submitted && feedbackFormGroup.controls['mobile'].invalid" class="text-danger">
+                <span *ngIf="feedbackFormGroup.controls['mobile'].errors.required" class="tooltiptext">Mobile number is required.</span>
+                <span *ngIf="feedbackFormGroup.controls['mobile'].hasError('pattern')" class="tooltiptext">
+                  Invalid mobile number.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group showtip">
+              <textarea name="message" formControlName="message" [(ngModel)]="feedback.message" id="message" class="form-control message"
+                rows="9" cols="25" placeholder="Message" [class.is-invalid]="submitted && feedbackFormGroup.controls['message'].invalid"></textarea>
+              <div *ngIf="submitted && feedbackFormGroup.controls['message'].invalid" class="text-danger">
+                <span *ngIf="feedbackFormGroup.controls['message'].errors.required" class="tooltiptext">Message is required.</span>
+                <span *ngIf="feedbackFormGroup.controls['message'].errors?.minlength" class="tooltiptext">
+                  Message number should contain at least 10 characters.</span>
+                <span *ngIf="feedbackFormGroup.controls['message'].errors?.maxlength" class="tooltiptext">
+                  Message number should contain at most 200 characters.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-primary btn-learn pull-right" id="btnContactUs">Send Message</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <legend><span class="fa fa-globe"></span> Our office</legend>
+    <address>
+      <strong>Learn @ Legato.</strong><br> Manyata Embassy Business Park, L1 Building<br> 10th-6th Floor, <br>Nagavara, Bangalore-560045
+      <br> Mobile: (+91) 9556824846
+    </address>
+    <address>
+      <strong>Niranjan Maharana</strong><br>
+      <a href="mailto:niranjan.maharana@legatohealth.com">niranjan.maharana@legatohealth.com</a>
+    </address>
+  </div>
+</div>
