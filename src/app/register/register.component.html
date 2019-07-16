@@ -22,26 +22,6 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
           <div class="form-group">
-            <input type="email" formControlName="email" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-              placeholder="Email" />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Email is required</div>
-              <div *ngIf="f.email.errors.email">Email is invalid</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
-          <div class="form-group">
-            <input type="number" formControlName="mobile" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
-              placeholder="Mobile Number" />
-            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
-              <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
-              <div *ngIf="f.mobile.errors.pattern">Invalid mobile number</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
-          <div class="form-group">
             <input type="text" formControlName="firstName" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
               placeholder="First Name" />
             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
@@ -58,12 +38,70 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <input type="email" formControlName="email" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              placeholder="Email" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email is invalid</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <input type="text" formControlName="mobile" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
+              placeholder="Mobile Number" maxlength="10" />
+            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+              <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
+              <div *ngIf="f.mobile.errors?.minlength">Invalid mobile number</div>
+              <div *ngIf="f.mobile.errors?.maxlength">Invalid mobile number</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <!-- <ngb-datepicker formControlName="birthDate" class="form-control no-box-shadow" 
+              [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }" 
+              (navigate)="date = $event.next"></ngb-datepicker> -->
+            <input type="text" bsDatepicker formControlName="birthDate" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }"
+              placeholder="Date of Birth" [bsConfig]="dpConfig" />
+            <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+              <div *ngIf="f.birthDate.errors.required">Birth date is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+          <div class="form-group">
+            <select formControlName="managerId" class="form-control no-box-shadow" [ngClass]="{ 'is-invalid': submitted && f.managerId.errors }">
+              <option value="">-Select Manger-</option>
+              <option *ngFor="let admin of admins" value= {{admin.id}}>
+                  {{admin.lastName}}, {{admin.firstName}} - {{admin.username}}
+              </option>
+            </select>
+            <div *ngIf="submitted && f.managerId.errors" class="invalid-feedback">
+              <div *ngIf="f.managerId.errors.required">Select manager</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 mx-auto">
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id='profilePic' 
+                  accept="image/*" (change)="onFileChange($event.target.files)">
+                <label class="custom-file-label no-box-shadow" for="profilePic">{{filename}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col-lg-12 mx-auto">
           <div class="btn-group m-0" role="group">
             <button [disabled]="loading" class="btn btn-secondary" role="button">Register</button>
-            <button [disabled]="loading" class="btn btn-default" role="button" (click)="onLoginClick()">Login</button>
-            <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+            <button [disabled]="loading" class="btn btn-light" role="button" (click)="onLoginClick()">Login</button>
           </div>
+          <img *ngIf="loading" class="img-responsive pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+          />
           <div *ngIf="error" class="text-danger pt-2">{{error}}</div>
         </div>
       </div>

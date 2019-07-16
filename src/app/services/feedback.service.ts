@@ -11,7 +11,7 @@ export class FeedbackService {
     comments: Feedback[];
 
     constructor(private _http: HttpClient) {
-        this._apiUrl = environment.apiUrl;
+        this._apiUrl = environment.config.apiUrl;
     }
 
     getFeedbacks(): Observable<Feedback[]> {

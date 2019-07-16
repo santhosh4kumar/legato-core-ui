@@ -50,13 +50,22 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
-      data => {
-        this.router.navigate([this.returnUrl]);
-      },
-      error => {
-        this.error = error.error.message;
-        this.loading = false;
-      });
+        data => {
+          if (data) {
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.error = 'Bad credentials!';
+          }
+        },
+        error => {
+          this.loading = false;
+          if(error.status == 0) {
+            this.error = 'Application server may not be running!';
+          } else {
+            this.error = 'Bad credential!';
+          }
+        }
+      );
   }
 
   onRegisterClick() {

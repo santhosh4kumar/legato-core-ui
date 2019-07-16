@@ -10,31 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   collapse: boolean = true;
-  username: string = "";
-  loggedIn: boolean = false;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
-    if (this.authenticationService.currentUserValue) {
-      this.username = this.authenticationService.currentUserValue.username;
-      this.loggedIn = this.authenticationService.loggedIn;
-    }
   }
 
   ngOnInit() {
-    if (this.authenticationService.currentUserValue) {
-      this.username = this.authenticationService.currentUserValue.username;
-      this.loggedIn = this.authenticationService.loggedIn;
-    }
   }
 
   login() {
-    this.loggedIn = false;
     this.router.navigate(["/login"]);
   }
 
   logout() {
-    this.loggedIn = false;
-    this.router.navigate(["/login"]);
+    this.authenticationService.logout();
   }
 
 }

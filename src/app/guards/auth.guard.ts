@@ -1,4 +1,5 @@
 import { AuthenticationService } from './../services/authentication.service';
+
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -11,9 +12,9 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const currentUser = this.authenticationService.currentUserValue;
-        if (currentUser) {
-            // logged in so return true
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            this.authenticationService.checkSessionToken();
             return true;
         }
 

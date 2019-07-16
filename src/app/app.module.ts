@@ -1,4 +1,3 @@
-import { fakeBackendProvider } from './interceptors/fake-backend';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AuthenticationService } from './services/authentication.service';
@@ -10,8 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule, ToastContainerModule, ToastrService } from 'ngx-toastr';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserIdleModule } from 'angular-user-idle';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,14 +53,25 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BsDatepickerModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
-    TooltipModule, 
     BrowserAnimationsModule, 
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
-    ToastContainerModule
+    FileUploadModule, 
+    TooltipModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
+    ToastContainerModule,
+    UserIdleModule.forRoot({idle: 60, timeout: 60, ping: 60}),
+    BsDatepickerModule.forRoot()
   ],
-  providers: [FeedbackService, AuthGuard, AuthenticationService, JwtInterceptor, ErrorInterceptor, fakeBackendProvider],
+  providers: [
+    ToastrService, 
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
